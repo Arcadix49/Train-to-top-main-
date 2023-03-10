@@ -4,6 +4,7 @@ import cors from 'cors';
 import authRouter from './routes/authRouter.js';
 import coachRouter from './routes/coachRouter.js'; 
 import {auth} from './middleware/authMiddleware.js';
+import userRouter from './routes/publicRouter.js';
 
 const app = express();
 
@@ -24,7 +25,11 @@ mongoose.connection.on("error", () => {
 mongoose.connection.on("open", () => {
     console.log("Connexion à la base de données établie");
     app.use('/auth', authRouter);
-    app.use('/coach', [auth.verifyToken], coachRouter)  //auth middleware verifie token et role coach
+    app.use('/article', publicRouter);
+    app.use('/coach', [auth.verifyToken], coachRouter)
+    app.use('/team', [auth.verifyToken], teamRouter)
+
+
 })
 
 app.listen(9576,function(){

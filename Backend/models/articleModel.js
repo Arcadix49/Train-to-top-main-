@@ -14,9 +14,10 @@ const articleModel = new mongoose.Schema({
         type : mongoose.Schema.Types.ObjectId,
         ref: 'User'
     },
-    subject:{
-        type: String,
-    }
+    comment:{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Comment'
+    },
     }, {
         timestamps: true,
     }

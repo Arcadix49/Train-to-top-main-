@@ -2,7 +2,6 @@ import Team from '../models/teamsModel.js';
 
 
 export const createTeam = async (req, res) => {
-console.log(req.userID)
   const { name, description, code } = req.body;
 
     const newTeam = new Team({
@@ -21,7 +20,7 @@ console.log(req.userID)
   }
 };
 
-export const deleteTeam = (req, res, next) => {
+export const deleteTeam = (req, res) => {
     Team.deleteOne({_id: req.params.id})
         .then(() => res.status(200).json({ message: 'Objet supprimé !'}))
         .catch(error => res.status(400).json({ error }));

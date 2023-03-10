@@ -1,4 +1,3 @@
-
 import jwt from 'jsonwebtoken'
 
 const verifyToken = (req, res, next) => {
@@ -16,12 +15,16 @@ const verifyToken = (req, res, next) => {
           res.status(403).send({message: "Unauthorized!"});
           return
       }
+
       req.userID = decoded.id
       next()
   });
 
 }
+// verifyTeam  
+const verifyTeam = (req, res, next) => {
 
+}
 export const auth = {
     verifyToken
 }
